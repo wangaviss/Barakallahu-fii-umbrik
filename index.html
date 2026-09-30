@@ -75,74 +75,80 @@ button{
 <body>
 <div class="wrap">
   <section class="hero">
-    <!-- MUSIK BACKGROUND -->
+<!-- MUSIK BACKGROUND -->
 <audio id="bgMusic" loop preload="auto">
     <source src="Hingga hari tuaku.mp3" type="audio/mpeg">
 </audio>
 
-<!-- TOMBOL MUSIK -->
-<button id="musicButton" onclick="startMusic()">▶</button>
+<!-- TOMBOL PLAY -->
+<button id="playButton" onclick="playMusic()">
+    ▶
+</button>
 
 <style>
-#musicButton {
+#playButton {
     position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    border: 3px solid white;
-    background: rgba(255, 210, 140, 0.95);
-    color: #2b1930;
-    font-size: 48px;
-    font-weight: bold;
-    z-index: 99999;
-    cursor: pointer;
-    box-shadow: 0 0 40px rgba(255,210,140,.7);
-}
 
-#musicButton.playing {
+    width: 130px;
+    height: 130px;
+
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.9);
+
+    background: rgba(255,210,140,.95);
+    color: #2b1930;
+
+    font-size: 50px;
+    font-weight: bold;
+
+    cursor: pointer;
+    z-index: 99999;
+
+    box-shadow:
+        0 0 25px rgba(255,210,140,.7),
+        0 0 70px rgba(255,180,120,.35);
+
     animation: pulse 1.5s infinite;
 }
 
+#playButton.hide {
+    display: none;
+}
+
 @keyframes pulse {
+    0%,100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
     50% {
-        transform: translate(-50%, -50%) scale(1.12);
+        transform: translate(-50%, -50%) scale(1.1);
     }
 }
 </style>
 
 <script>
 const bgMusic = document.getElementById("bgMusic");
-const musicButton = document.getElementById("musicButton");
+const playButton = document.getElementById("playButton");
 
-/* Volume maksimal */
-bgMusic.volume = 1.0;
+function playMusic() {
 
-function startMusic() {
+    // Volume maksimal
     bgMusic.volume = 1.0;
 
     bgMusic.play().then(() => {
-        musicButton.innerHTML = "❚❚";
-        musicButton.classList.add("playing");
+
+        // Hilangkan tombol setelah musik mulai
+        playButton.classList.add("hide");
+
     }).catch(error => {
-        console.log("Musik belum bisa diputar:", error);
+
+        console.log("Musik gagal diputar:", error);
+
     });
-}
-
-function stopMusic() {
-    bgMusic.pause();
-    musicButton.innerHTML = "▶";
-    musicButton.classList.remove("playing");
-}
-
-musicButton.addEventListener("click", function() {
-    if (bgMusic.paused) {
-        startMusic();
-    } else {
-        stopMusic();
-    }
+</script>    }
 });
 </script>
     <div class="badge">08 • 10 • 2026</div>
