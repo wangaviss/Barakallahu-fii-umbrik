@@ -75,9 +75,76 @@ button{
 <body>
 <div class="wrap">
   <section class="hero">
-    <audio id="musik" controls loop>
+    <!-- MUSIK BACKGROUND -->
+<audio id="bgMusic" loop preload="auto">
     <source src="Hingga hari tuaku.mp3" type="audio/mpeg">
-    </audio>
+</audio>
+
+<!-- TOMBOL MUSIK -->
+<button id="musicButton" onclick="startMusic()">▶</button>
+
+<style>
+#musicButton {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    background: rgba(255, 210, 140, 0.95);
+    color: #2b1930;
+    font-size: 48px;
+    font-weight: bold;
+    z-index: 99999;
+    cursor: pointer;
+    box-shadow: 0 0 40px rgba(255,210,140,.7);
+}
+
+#musicButton.playing {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    50% {
+        transform: translate(-50%, -50%) scale(1.12);
+    }
+}
+</style>
+
+<script>
+const bgMusic = document.getElementById("bgMusic");
+const musicButton = document.getElementById("musicButton");
+
+/* Volume maksimal */
+bgMusic.volume = 1.0;
+
+function startMusic() {
+    bgMusic.volume = 1.0;
+
+    bgMusic.play().then(() => {
+        musicButton.innerHTML = "❚❚";
+        musicButton.classList.add("playing");
+    }).catch(error => {
+        console.log("Musik belum bisa diputar:", error);
+    });
+}
+
+function stopMusic() {
+    bgMusic.pause();
+    musicButton.innerHTML = "▶";
+    musicButton.classList.remove("playing");
+}
+
+musicButton.addEventListener("click", function() {
+    if (bgMusic.paused) {
+        startMusic();
+    } else {
+        stopMusic();
+    }
+});
+</script>
     <div class="badge">08 • 10 • 2026</div>
     <div class="arabic">بَارَكَ اللهُ فِي عُمْرِكِ</div>
     <h1>Barakallahu Fii Umrik,<br><span>Istriku 🤍</span></h1>
