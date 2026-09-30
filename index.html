@@ -75,15 +75,11 @@ button{
 <body>
 <div class="wrap">
   <section class="hero">
-<!-- MUSIK BACKGROUND -->
 <audio id="bgMusic" loop preload="auto">
-    <source src="Hingga hari tuaku.mp3" type="audio/mpeg">
+    <source src="Hingga%20hari%20tuaku.mp3" type="audio/mpeg">
 </audio>
 
-<!-- TOMBOL PLAY -->
-<button id="playButton" onclick="playMusic()">
-    ▶
-</button>
+<button id="playButton" onclick="playMusic()">▶</button>
 
 <style>
 #playButton {
@@ -94,13 +90,12 @@ button{
 
     width: 130px;
     height: 130px;
-
     border-radius: 50%;
-    border: 3px solid rgba(255,255,255,.9);
 
-    background: rgba(255,210,140,.95);
+    border: 3px solid white;
+    background: rgba(255, 210, 140, 0.95);
+
     color: #2b1930;
-
     font-size: 50px;
     font-weight: bold;
 
@@ -108,8 +103,8 @@ button{
     z-index: 99999;
 
     box-shadow:
-        0 0 25px rgba(255,210,140,.7),
-        0 0 70px rgba(255,180,120,.35);
+        0 0 30px rgba(255,210,140,.8),
+        0 0 70px rgba(255,180,120,.4);
 
     animation: pulse 1.5s infinite;
 }
@@ -119,7 +114,7 @@ button{
 }
 
 @keyframes pulse {
-    0%,100% {
+    0%, 100% {
         transform: translate(-50%, -50%) scale(1);
     }
 
@@ -135,20 +130,21 @@ const playButton = document.getElementById("playButton");
 
 function playMusic() {
 
-    // Volume maksimal
+    // Volume 100%
     bgMusic.volume = 1.0;
 
     bgMusic.play().then(() => {
 
-        // Hilangkan tombol setelah musik mulai
+        // Musik berhasil dimainkan,
+        // tombol langsung menghilang
         playButton.classList.add("hide");
 
-    }).catch(error => {
+    }).catch((error) => {
 
-        console.log("Musik gagal diputar:", error);
+        console.log("Musik belum dapat dimainkan:", error);
 
-    };
-</script> 
+    });
+}
 </script>
     <div class="badge">08 • 10 • 2026</div>
     <div class="arabic">بَارَكَ اللهُ فِي عُمْرِكِ</div>
