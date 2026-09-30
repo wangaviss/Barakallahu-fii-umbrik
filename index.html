@@ -238,5 +238,40 @@ setInterval(()=>{
   setTimeout(()=>p.remove(),10000);
 },650);
 </script>
+  <script>
+const tanggalUlangTahun = new Date("2026-10-08T00:00:00+07:00");
+const sekarang = new Date();
+
+if (sekarang < tanggalUlangTahun) {
+    document.body.innerHTML = `
+        <div style="
+            min-height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            text-align:center;
+            padding:30px;
+            background:#21162f;
+            color:white;
+            font-family:Arial,sans-serif;
+        ">
+            <div>
+                <div style="font-size:70px;">🔒❤️</div>
+
+                <h1>Belum waktunya...</h1>
+
+                <p style="font-size:18px;line-height:1.7;">
+                    Ada kejutan kecil untukmu istriku eva susanti.<br>
+                    Tunggu sampai waktunya tiba ya sayang.
+                </p>
+
+                <p style="color:#ffd48a;font-size:22px;">
+                    08 Oktober 2026
+                </p>
+            </div>
+        </div>
+    `;
+}
+  </script>
 </body>
 </html>
